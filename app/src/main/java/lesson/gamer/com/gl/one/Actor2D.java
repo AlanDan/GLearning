@@ -116,7 +116,7 @@ public class Actor2D extends BitmapSprite2D implements Moveable, OnStateChangedL
             }
 
             updateAllDrawRegions();
-            //requestDrawDirty(getDrawingRect());
+            requestDrawDirty(getDrawingRect());
 
             canvas.save();
             canvas.clipRect(getDrawingRect());

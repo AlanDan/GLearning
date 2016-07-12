@@ -92,7 +92,7 @@ public class MSurfaceView extends SurfaceView implements SurfaceHolder.Callback,
 
     @Override
     public void requestDrawDirty(RectF rectF) {
-        if(mDrawThread != null){
+        if (mDrawThread != null) {
             mDrawThread.postDirty(rectF);
         }
     }
@@ -117,14 +117,14 @@ public class MSurfaceView extends SurfaceView implements SurfaceHolder.Callback,
             updateTickTime();
             while (mRunning) {
                 Canvas canvas = mSurfaceHolder.lockCanvas();
-                if(mDirtyQueue.size() > 0) {
+                if (mDirtyQueue.size() > 0) {
                     RectF dirty = mDirtyQueue.poll();
-                    synchronized (mDirtyQueue){
+                    synchronized (mDirtyQueue) {
                         drawDirty(canvas, dirty, System.currentTimeMillis(), false);
                     }
-                } else {
-                    draw(canvas);
                 }
+
+                draw(canvas);
                 mSurfaceHolder.unlockCanvasAndPost(canvas);
                 tryingKeepFrames();
             }
@@ -168,9 +168,9 @@ public class MSurfaceView extends SurfaceView implements SurfaceHolder.Callback,
             mTickTime = System.currentTimeMillis();
         }
 
-        public void postDirty(RectF dirty){
+        public void postDirty(RectF dirty) {
 
-            if(dirty == null){
+            if (dirty == null) {
                 return;
             }
             synchronized (mDirtyQueue) {
